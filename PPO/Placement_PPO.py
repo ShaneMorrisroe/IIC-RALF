@@ -66,6 +66,8 @@ import logging
 
 import pandas as pd
 
+from Environment.RUDY import RUDY
+
 def init_weights(m):
     if type(m)==nn.Linear:
         torch.nn.init.orthogonal_(m.weight)
@@ -265,6 +267,163 @@ class Placement_PPO:
         
         self.save_logs_to_csv()
         self.env.save_logs_to_csv()
+        
+    def learn_shane(self, total_placements):
+        """Learn to place."""
+        print(f"Learning to place for {total_placements} placements.")
+        print(f"Doing {self.placements_per_batch} placements per batch.")
+        
+        self.file_logger.info(f"Learning to place for {total_placements} placements.")
+        self.file_logger.info(f"Doing {self.placements_per_batch} placements per batch.")
+
+        placements_so_far = 0  # Track the done placements
+        self.iterations_so_far = 0  # Track the done iterations
+        cumulative_pareto_data = []  # Cumulative Pareto data across iterations
+
+        while placements_so_far < total_placements:
+            # Check for early stopping
+            if len(self.logger['std_rews']) > 100:
+                mean_std = np.mean(np.array(self.logger['std_rews'][-100:]))
+                if mean_std < self.stopping_std:
+                    break
+
+            start = time.time_ns()
+            # Roll out the environment
+            self.file_logger.debug(f"Rolling out the environment.")
+            batch_obs, batch_acts, batch_log_probs, batch_rts, batch_advantages, batch_placements = self.rollout()
+
+            print(f"Rollout took: {(time.time_ns() - start) / 1e6} ms")
+            
+            placements_so_far += batch_placements
+            self.iterations_so_far += 1
+
+            # Log iterations and placements so far
+            self.logger["iterations_so_far"] = self.iterations_so_far
+            self.logger["placements_so_far"] = placements_so_far
+
+            # Detach tensors for optimization
+            A = batch_advantages.detach()
+            batch_rts = batch_rts.detach()
+            batch_log_probs = batch_log_probs.detach()
+            batch_acts = batch_acts.detach()
+
+            actor_losses, critic_losses, policy_losses, KL_divergences = [], [], [], []
+
+            # Optimize the networks
+            for _ in range(self.n_updates_per_iteration):
+                self.file_logger.debug(f"Optimization round {_}/{self.n_updates_per_iteration}.")
+                self.file_logger.debug(f"Evaluating batch.")
+
+                # Calculate state values and probabilities
+                V, step_log_prob = self.evaluate(batch_obs, batch_acts)
+                ratios = torch.exp(step_log_prob - batch_log_probs)
+
+                # Calculate surrogate losses
+                surr1 = ratios * A
+                surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * A
+
+                actor_loss = (-torch.min(surr1, surr2)).mean()
+                critic_loss = nn.MSELoss()(V, batch_rts)
+                policy_loss = actor_loss + 0.5 * critic_loss
+
+                # KL approximation
+                KL_approx = (ratios * torch.log(ratios) - (ratios - 1)).mean()
+
+                # Optimization step
+                self.policy_optim.zero_grad()
+                policy_loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.policy.parameters(), 5)
+                self.policy_optim.step()
+
+                actor_losses.append(actor_loss.item())
+                critic_losses.append(critic_loss.item())
+                policy_losses.append(policy_loss.item())
+                KL_divergences.append(KL_approx.item())
+
+                print(f"KL={KL_approx.item()}")
+
+            print(f"Optimization took: {(time.time_ns() - start) / 1e6} ms")
+
+            self.logger['actor_losses'].append(actor_losses)
+            self.logger['critic_losses'].append(critic_losses)
+            self.logger['policy_losses'].append(policy_losses)
+            self.logger['KL_divergences'].append(KL_divergences)
+
+            # Add Pareto data (HPWL and Congestion)
+            HPWL = 0
+            rudy_congestion = RUDY(self.env._pdk)
+            for net in self.env.best_placement.nets.values():
+                HPWL += net.HPWL()
+                rudy_congestion.add_net(net)
+            congestion = rudy_congestion.congestion()
+
+            # Add new data to the cumulative Pareto dataset
+            cumulative_pareto_data.append((HPWL, congestion))
+
+            # Plot the cumulative Pareto curve
+            self._plot_pareto_curve(cumulative_pareto_data, iteration=self.iterations_so_far)
+
+            self._log_summary()
+
+            if self.plot_log:
+                self.plot_logs(title=self.env.name)
+
+            if self.iterations_so_far % self.save_freq == 0:
+                torch.save(self.actor.state_dict(), 'Network/Weights/ppo_actor.pth')
+                torch.save(self.critic.state_dict(), 'Network/Weights/ppo_critic.pth')
+
+        self.save_logs_to_csv()
+        self.env.save_logs_to_csv()
+
+    
+    def _calculate_pareto_front(self, data):
+        """Calculate the Pareto front from the given data."""
+        pareto_front = []
+        for i, (hpwl, cong) in enumerate(data):
+            dominated = False
+            for j, (other_hpwl, other_cong) in enumerate(data):
+                # Check if the current point is dominated
+                if i != j and other_hpwl <= hpwl and other_cong <= cong and (other_hpwl < hpwl or other_cong < cong):
+                    dominated = True
+                    break
+            if not dominated:
+                pareto_front.append((hpwl, cong))
+        return pareto_front
+
+
+    def _plot_pareto_curve(self, cumulative_data, iteration):
+        """Plot the cumulative Pareto curve with all points."""
+        import matplotlib.pyplot as plt
+        import os
+
+        # Ensure the directory for saving exists
+        save_dir = 'Logs/Pareto_Curves'
+        os.makedirs(save_dir, exist_ok=True)
+
+        # Calculate the Pareto front from cumulative data
+        pareto_front = self._calculate_pareto_front(cumulative_data)
+
+        # Extract Pareto front points
+        hpwl_vals = [point[0] for point in pareto_front]
+        cong_vals = [point[1] for point in pareto_front]
+
+        # Plot all points and Pareto front
+        plt.figure()
+        plt.scatter(*zip(*cumulative_data), alpha=0.3, label="All Points")
+        plt.plot(hpwl_vals, cong_vals, 'r-o', label="Pareto Front")
+        plt.xlabel("HPWL")
+        plt.ylabel("Congestion")
+        plt.title("Pareto Curve (Cumulative)")
+        plt.legend()
+        plt.grid(True)
+
+        # Save the plot
+        save_path = os.path.join(save_dir, f'Cumulative_Pareto_Curve.png')
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.close()  # Close the plot to avoid displaying it
+
+        print(f"Cumulative Pareto curve saved to {save_path}")
+
 
     def rollout(self):
         """Rollout the environment.

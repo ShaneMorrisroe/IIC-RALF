@@ -48,7 +48,7 @@ LAYERS = ['m1','m2','m3','m4']      #Layers which will be used for wire-planning
 
 SHOW_STATS = True                    #If True, statistics of the routing will be printed
 DESTINATION_PATH = 'Magic/Routing/'  #Destination path of the routing file
-PLOT_RESULT = False                  #If True, the result will be plotted
+PLOT_RESULT = True                  #If True, the result will be plotted
 LOG_WIREPLAN = False                 #If True, the stats of the wire-planning iterations will be logged to a csv file
 
 #########################################################################
@@ -88,4 +88,5 @@ route(circuit=circuit, routing_name=CIRCUIT_NAME, plan_wires=PLAN_WIRES,
 print(f"Took {round((time.time()-start)*1e3,2)}ms")
 
 if PLOT_RESULT:
+    plt.savefig("output.png")
     plt.show()

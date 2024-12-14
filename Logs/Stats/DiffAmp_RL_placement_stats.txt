@@ -1,0 +1,16 @@
++----------------------+-----------+
+|         Name         |   Value   |
++----------------------+-----------+
+|       Circuit        |  DiffAmp  |
+|    Time taken [s]    |     29    |
+|      Placements      |    1000   |
+| Placements per batch |    100    |
+|      Env. size       | 1558x1558 |
+|  Solution placement  |    744    |
+|      Total HPWL      |   2319.0  |
+|      Congestion      |  1446.82  |
+|        Reward        |  -2357.04 |
+|     Total width      |   971.0   |
+|     Total height     |   737.0   |
+|         Area         |  715627.0 |
++----------------------+-----------+

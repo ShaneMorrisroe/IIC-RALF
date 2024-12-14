@@ -40,7 +40,7 @@ CIRCUIT_NAME = "DiffAmp"                                #Name of the top-circuit
 NET_RULES_FILE = "NetRules/net_rules_DiffAmp.json"      #Net-rules definition file
 N_PLACEMENTS = 1000                                     #Number of trial placements per circuit/subcircuit
 
-USE_LOGGER = False                  #If True, debug information will be logged under "Logs/{CIRCUIT_NAME}_placement.log".
+USE_LOGGER = True                  #If True, debug information will be logged under "Logs/{CIRCUIT_NAME}_placement.log". Originally false!
 INSTANTIATE_CELLS_IN_MAGIC = True   #If True, the devices cell-view will be instantiated in Magic
 N_PLACEMENTS_PER_ROLLOUT = 100      #Number of trial placements per RL - rollout
 DEF_FILE = None                     #Def file of the circuit
@@ -59,6 +59,12 @@ def main():
     #setup the circuit
     C = setup_circuit(CIRCUIT_FILE, CIRCUIT_NAME, [], net_rules_file=NET_RULES_FILE)
     
+    # Generate the circuit graph
+    C.generate_circuit_graph()
+
+    # Visualize the circuit graph and save it as an image
+    C.draw_graph("circuit_graph.png")
+        
     #include primitive compositions into the circuit
     include_primitives_hierarchical(C)
     include_RStrings_hierarchical(C)

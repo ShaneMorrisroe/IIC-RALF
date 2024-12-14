@@ -65,4 +65,4 @@ def train(env : Placement, hyperparameters : dict, actor_model : str = '', criti
         print(f"Training from scratch.", flush=True)
 
     #learn to place
-    model.learn(total_placements=total_placements)
+    model.learn_shane(total_placements=total_placements)

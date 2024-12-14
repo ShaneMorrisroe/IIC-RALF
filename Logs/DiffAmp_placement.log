@@ -1,0 +1,434 @@
+[2024-12-14 14:02:22,699] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 81/100.
+[2024-12-14 14:02:22,715] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 82/100.
+[2024-12-14 14:02:22,732] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 83/100.
+[2024-12-14 14:02:22,747] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 84/100.
+[2024-12-14 14:02:22,762] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 85/100.
+[2024-12-14 14:02:22,775] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 86/100.
+[2024-12-14 14:02:22,791] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 87/100.
+[2024-12-14 14:02:22,806] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 88/100.
+[2024-12-14 14:02:22,823] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 89/100.
+[2024-12-14 14:02:22,853] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 90/100.
+[2024-12-14 14:02:22,878] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 91/100.
+[2024-12-14 14:02:22,903] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 92/100.
+[2024-12-14 14:02:22,929] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 93/100.
+[2024-12-14 14:02:22,949] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 94/100.
+[2024-12-14 14:02:22,970] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 95/100.
+[2024-12-14 14:02:22,985] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 96/100.
+[2024-12-14 14:02:22,998] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 97/100.
+[2024-12-14 14:02:23,010] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 98/100.
+[2024-12-14 14:02:23,021] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 99/100.
+[2024-12-14 14:02:23,044] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 0/5.
+[2024-12-14 14:02:23,045] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:23,059] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:23,062] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:23,062] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:23,120] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 1/5.
+[2024-12-14 14:02:23,121] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:23,148] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:23,153] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:23,153] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:23,199] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 2/5.
+[2024-12-14 14:02:23,200] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:23,222] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:23,228] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:23,229] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:23,252] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 3/5.
+[2024-12-14 14:02:23,252] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:23,274] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:23,276] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:23,276] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:23,296] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 4/5.
+[2024-12-14 14:02:23,297] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:23,316] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:23,318] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:23,318] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:23,549] DEBUG [PPO.Placement_PPO.learn_shane:292] Rolling out the environment.
+[2024-12-14 14:02:23,549] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 0/100.
+[2024-12-14 14:02:23,567] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 1/100.
+[2024-12-14 14:02:23,591] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 2/100.
+[2024-12-14 14:02:23,607] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 3/100.
+[2024-12-14 14:02:23,622] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 4/100.
+[2024-12-14 14:02:23,635] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 5/100.
+[2024-12-14 14:02:23,648] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 6/100.
+[2024-12-14 14:02:23,661] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 7/100.
+[2024-12-14 14:02:23,675] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 8/100.
+[2024-12-14 14:02:23,686] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 9/100.
+[2024-12-14 14:02:23,698] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 10/100.
+[2024-12-14 14:02:23,710] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 11/100.
+[2024-12-14 14:02:23,721] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 12/100.
+[2024-12-14 14:02:23,732] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 13/100.
+[2024-12-14 14:02:23,743] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 14/100.
+[2024-12-14 14:02:23,755] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 15/100.
+[2024-12-14 14:02:23,769] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 16/100.
+[2024-12-14 14:02:23,784] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 17/100.
+[2024-12-14 14:02:23,797] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 18/100.
+[2024-12-14 14:02:23,809] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 19/100.
+[2024-12-14 14:02:23,826] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 20/100.
+[2024-12-14 14:02:23,848] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 21/100.
+[2024-12-14 14:02:23,879] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 22/100.
+[2024-12-14 14:02:23,903] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 23/100.
+[2024-12-14 14:02:23,932] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 24/100.
+[2024-12-14 14:02:23,963] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 25/100.
+[2024-12-14 14:02:23,992] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 26/100.
+[2024-12-14 14:02:24,008] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 27/100.
+[2024-12-14 14:02:24,020] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 28/100.
+[2024-12-14 14:02:24,034] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 29/100.
+[2024-12-14 14:02:24,049] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 30/100.
+[2024-12-14 14:02:24,068] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 31/100.
+[2024-12-14 14:02:24,081] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 32/100.
+[2024-12-14 14:02:24,099] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 33/100.
+[2024-12-14 14:02:24,115] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 34/100.
+[2024-12-14 14:02:24,132] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 35/100.
+[2024-12-14 14:02:24,149] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 36/100.
+[2024-12-14 14:02:24,164] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 37/100.
+[2024-12-14 14:02:24,181] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 38/100.
+[2024-12-14 14:02:24,197] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 39/100.
+[2024-12-14 14:02:24,212] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 40/100.
+[2024-12-14 14:02:24,231] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 41/100.
+[2024-12-14 14:02:24,248] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 42/100.
+[2024-12-14 14:02:24,265] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 43/100.
+[2024-12-14 14:02:24,290] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 44/100.
+[2024-12-14 14:02:24,320] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 45/100.
+[2024-12-14 14:02:24,353] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 46/100.
+[2024-12-14 14:02:24,394] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 47/100.
+[2024-12-14 14:02:24,415] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 48/100.
+[2024-12-14 14:02:24,437] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 49/100.
+[2024-12-14 14:02:24,457] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 50/100.
+[2024-12-14 14:02:24,476] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 51/100.
+[2024-12-14 14:02:24,495] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 52/100.
+[2024-12-14 14:02:24,511] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 53/100.
+[2024-12-14 14:02:24,527] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 54/100.
+[2024-12-14 14:02:24,544] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 55/100.
+[2024-12-14 14:02:24,568] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 56/100.
+[2024-12-14 14:02:24,592] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 57/100.
+[2024-12-14 14:02:24,616] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 58/100.
+[2024-12-14 14:02:24,637] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 59/100.
+[2024-12-14 14:02:24,657] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 60/100.
+[2024-12-14 14:02:24,678] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 61/100.
+[2024-12-14 14:02:24,701] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 62/100.
+[2024-12-14 14:02:24,723] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 63/100.
+[2024-12-14 14:02:24,742] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 64/100.
+[2024-12-14 14:02:24,765] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 65/100.
+[2024-12-14 14:02:24,789] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 66/100.
+[2024-12-14 14:02:24,809] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 67/100.
+[2024-12-14 14:02:24,824] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 68/100.
+[2024-12-14 14:02:24,838] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 69/100.
+[2024-12-14 14:02:24,853] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 70/100.
+[2024-12-14 14:02:24,867] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 71/100.
+[2024-12-14 14:02:24,883] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 72/100.
+[2024-12-14 14:02:24,899] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 73/100.
+[2024-12-14 14:02:24,914] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 74/100.
+[2024-12-14 14:02:24,929] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 75/100.
+[2024-12-14 14:02:24,943] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 76/100.
+[2024-12-14 14:02:24,963] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 77/100.
+[2024-12-14 14:02:24,981] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 78/100.
+[2024-12-14 14:02:25,006] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 79/100.
+[2024-12-14 14:02:25,030] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 80/100.
+[2024-12-14 14:02:25,052] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 81/100.
+[2024-12-14 14:02:25,075] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 82/100.
+[2024-12-14 14:02:25,098] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 83/100.
+[2024-12-14 14:02:25,119] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 84/100.
+[2024-12-14 14:02:25,136] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 85/100.
+[2024-12-14 14:02:25,155] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 86/100.
+[2024-12-14 14:02:25,177] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 87/100.
+[2024-12-14 14:02:25,199] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 88/100.
+[2024-12-14 14:02:25,219] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 89/100.
+[2024-12-14 14:02:25,237] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 90/100.
+[2024-12-14 14:02:25,255] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 91/100.
+[2024-12-14 14:02:25,276] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 92/100.
+[2024-12-14 14:02:25,293] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 93/100.
+[2024-12-14 14:02:25,310] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 94/100.
+[2024-12-14 14:02:25,326] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 95/100.
+[2024-12-14 14:02:25,342] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 96/100.
+[2024-12-14 14:02:25,359] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 97/100.
+[2024-12-14 14:02:25,376] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 98/100.
+[2024-12-14 14:02:25,392] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 99/100.
+[2024-12-14 14:02:25,424] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 0/5.
+[2024-12-14 14:02:25,425] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:25,448] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:25,451] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:25,455] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:25,500] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 1/5.
+[2024-12-14 14:02:25,502] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:25,526] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:25,528] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:25,528] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:25,571] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 2/5.
+[2024-12-14 14:02:25,572] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:25,643] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:25,658] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:25,659] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:25,708] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 3/5.
+[2024-12-14 14:02:25,708] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:25,746] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:25,752] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:25,753] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:25,799] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 4/5.
+[2024-12-14 14:02:25,800] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:25,863] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:25,867] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:25,867] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:26,135] DEBUG [PPO.Placement_PPO.learn_shane:292] Rolling out the environment.
+[2024-12-14 14:02:26,135] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 0/100.
+[2024-12-14 14:02:26,161] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 1/100.
+[2024-12-14 14:02:26,183] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 2/100.
+[2024-12-14 14:02:26,205] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 3/100.
+[2024-12-14 14:02:26,224] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 4/100.
+[2024-12-14 14:02:26,244] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 5/100.
+[2024-12-14 14:02:26,265] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 6/100.
+[2024-12-14 14:02:26,286] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 7/100.
+[2024-12-14 14:02:26,308] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 8/100.
+[2024-12-14 14:02:26,330] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 9/100.
+[2024-12-14 14:02:26,356] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 10/100.
+[2024-12-14 14:02:26,379] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 11/100.
+[2024-12-14 14:02:26,400] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 12/100.
+[2024-12-14 14:02:26,429] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 13/100.
+[2024-12-14 14:02:26,450] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 14/100.
+[2024-12-14 14:02:26,467] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 15/100.
+[2024-12-14 14:02:26,486] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 16/100.
+[2024-12-14 14:02:26,506] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 17/100.
+[2024-12-14 14:02:26,528] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 18/100.
+[2024-12-14 14:02:26,547] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 19/100.
+[2024-12-14 14:02:26,569] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 20/100.
+[2024-12-14 14:02:26,584] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 21/100.
+[2024-12-14 14:02:26,599] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 22/100.
+[2024-12-14 14:02:26,627] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 23/100.
+[2024-12-14 14:02:26,657] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 24/100.
+[2024-12-14 14:02:26,676] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 25/100.
+[2024-12-14 14:02:26,703] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 26/100.
+[2024-12-14 14:02:26,727] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 27/100.
+[2024-12-14 14:02:26,748] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 28/100.
+[2024-12-14 14:02:26,773] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 29/100.
+[2024-12-14 14:02:26,795] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 30/100.
+[2024-12-14 14:02:26,816] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 31/100.
+[2024-12-14 14:02:26,840] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 32/100.
+[2024-12-14 14:02:26,862] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 33/100.
+[2024-12-14 14:02:26,893] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 34/100.
+[2024-12-14 14:02:26,919] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 35/100.
+[2024-12-14 14:02:26,951] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 36/100.
+[2024-12-14 14:02:26,986] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 37/100.
+[2024-12-14 14:02:27,013] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 38/100.
+[2024-12-14 14:02:27,044] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 39/100.
+[2024-12-14 14:02:27,073] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 40/100.
+[2024-12-14 14:02:27,114] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 41/100.
+[2024-12-14 14:02:27,143] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 42/100.
+[2024-12-14 14:02:27,174] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 43/100.
+[2024-12-14 14:02:27,201] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 44/100.
+[2024-12-14 14:02:27,229] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 45/100.
+[2024-12-14 14:02:27,255] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 46/100.
+[2024-12-14 14:02:27,281] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 47/100.
+[2024-12-14 14:02:27,308] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 48/100.
+[2024-12-14 14:02:27,340] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 49/100.
+[2024-12-14 14:02:27,367] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 50/100.
+[2024-12-14 14:02:27,394] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 51/100.
+[2024-12-14 14:02:27,411] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 52/100.
+[2024-12-14 14:02:27,434] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 53/100.
+[2024-12-14 14:02:27,449] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 54/100.
+[2024-12-14 14:02:27,462] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 55/100.
+[2024-12-14 14:02:27,475] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 56/100.
+[2024-12-14 14:02:27,489] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 57/100.
+[2024-12-14 14:02:27,505] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 58/100.
+[2024-12-14 14:02:27,517] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 59/100.
+[2024-12-14 14:02:27,529] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 60/100.
+[2024-12-14 14:02:27,543] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 61/100.
+[2024-12-14 14:02:27,555] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 62/100.
+[2024-12-14 14:02:27,566] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 63/100.
+[2024-12-14 14:02:27,577] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 64/100.
+[2024-12-14 14:02:27,590] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 65/100.
+[2024-12-14 14:02:27,601] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 66/100.
+[2024-12-14 14:02:27,614] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 67/100.
+[2024-12-14 14:02:27,627] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 68/100.
+[2024-12-14 14:02:27,641] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 69/100.
+[2024-12-14 14:02:27,654] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 70/100.
+[2024-12-14 14:02:27,668] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 71/100.
+[2024-12-14 14:02:27,679] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 72/100.
+[2024-12-14 14:02:27,690] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 73/100.
+[2024-12-14 14:02:27,704] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 74/100.
+[2024-12-14 14:02:27,720] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 75/100.
+[2024-12-14 14:02:27,735] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 76/100.
+[2024-12-14 14:02:27,751] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 77/100.
+[2024-12-14 14:02:27,768] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 78/100.
+[2024-12-14 14:02:27,784] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 79/100.
+[2024-12-14 14:02:27,801] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 80/100.
+[2024-12-14 14:02:27,819] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 81/100.
+[2024-12-14 14:02:27,835] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 82/100.
+[2024-12-14 14:02:27,850] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 83/100.
+[2024-12-14 14:02:27,865] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 84/100.
+[2024-12-14 14:02:27,879] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 85/100.
+[2024-12-14 14:02:27,896] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 86/100.
+[2024-12-14 14:02:27,911] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 87/100.
+[2024-12-14 14:02:27,922] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 88/100.
+[2024-12-14 14:02:27,935] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 89/100.
+[2024-12-14 14:02:27,952] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 90/100.
+[2024-12-14 14:02:27,966] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 91/100.
+[2024-12-14 14:02:27,978] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 92/100.
+[2024-12-14 14:02:27,990] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 93/100.
+[2024-12-14 14:02:28,001] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 94/100.
+[2024-12-14 14:02:28,014] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 95/100.
+[2024-12-14 14:02:28,028] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 96/100.
+[2024-12-14 14:02:28,041] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 97/100.
+[2024-12-14 14:02:28,053] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 98/100.
+[2024-12-14 14:02:28,065] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 99/100.
+[2024-12-14 14:02:28,095] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 0/5.
+[2024-12-14 14:02:28,096] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:28,116] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:28,124] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:28,125] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:28,174] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 1/5.
+[2024-12-14 14:02:28,174] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:28,206] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:28,208] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:28,209] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:28,238] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 2/5.
+[2024-12-14 14:02:28,238] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:28,253] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:28,262] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:28,262] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:28,284] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 3/5.
+[2024-12-14 14:02:28,284] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:28,303] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:28,305] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:28,305] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:28,330] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 4/5.
+[2024-12-14 14:02:28,331] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:28,357] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:28,359] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:28,359] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:28,586] DEBUG [PPO.Placement_PPO.learn_shane:292] Rolling out the environment.
+[2024-12-14 14:02:28,587] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 0/100.
+[2024-12-14 14:02:28,607] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 1/100.
+[2024-12-14 14:02:28,627] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 2/100.
+[2024-12-14 14:02:28,641] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 3/100.
+[2024-12-14 14:02:28,652] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 4/100.
+[2024-12-14 14:02:28,665] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 5/100.
+[2024-12-14 14:02:28,677] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 6/100.
+[2024-12-14 14:02:28,689] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 7/100.
+[2024-12-14 14:02:28,701] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 8/100.
+[2024-12-14 14:02:28,713] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 9/100.
+[2024-12-14 14:02:28,725] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 10/100.
+[2024-12-14 14:02:28,739] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 11/100.
+[2024-12-14 14:02:28,754] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 12/100.
+[2024-12-14 14:02:28,766] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 13/100.
+[2024-12-14 14:02:28,778] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 14/100.
+[2024-12-14 14:02:28,790] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 15/100.
+[2024-12-14 14:02:28,804] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 16/100.
+[2024-12-14 14:02:28,827] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 17/100.
+[2024-12-14 14:02:28,841] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 18/100.
+[2024-12-14 14:02:28,855] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 19/100.
+[2024-12-14 14:02:28,867] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 20/100.
+[2024-12-14 14:02:28,881] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 21/100.
+[2024-12-14 14:02:28,894] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 22/100.
+[2024-12-14 14:02:28,907] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 23/100.
+[2024-12-14 14:02:28,919] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 24/100.
+[2024-12-14 14:02:28,932] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 25/100.
+[2024-12-14 14:02:28,950] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 26/100.
+[2024-12-14 14:02:28,968] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 27/100.
+[2024-12-14 14:02:28,986] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 28/100.
+[2024-12-14 14:02:28,999] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 29/100.
+[2024-12-14 14:02:29,012] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 30/100.
+[2024-12-14 14:02:29,024] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 31/100.
+[2024-12-14 14:02:29,036] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 32/100.
+[2024-12-14 14:02:29,047] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 33/100.
+[2024-12-14 14:02:29,059] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 34/100.
+[2024-12-14 14:02:29,074] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 35/100.
+[2024-12-14 14:02:29,095] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 36/100.
+[2024-12-14 14:02:29,116] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 37/100.
+[2024-12-14 14:02:29,139] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 38/100.
+[2024-12-14 14:02:29,156] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 39/100.
+[2024-12-14 14:02:29,173] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 40/100.
+[2024-12-14 14:02:29,206] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 41/100.
+[2024-12-14 14:02:29,240] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 42/100.
+[2024-12-14 14:02:29,268] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 43/100.
+[2024-12-14 14:02:29,296] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 44/100.
+[2024-12-14 14:02:29,319] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 45/100.
+[2024-12-14 14:02:29,338] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 46/100.
+[2024-12-14 14:02:29,362] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 47/100.
+[2024-12-14 14:02:29,385] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 48/100.
+[2024-12-14 14:02:29,406] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 49/100.
+[2024-12-14 14:02:29,426] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 50/100.
+[2024-12-14 14:02:29,445] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 51/100.
+[2024-12-14 14:02:29,462] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 52/100.
+[2024-12-14 14:02:29,479] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 53/100.
+[2024-12-14 14:02:29,496] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 54/100.
+[2024-12-14 14:02:29,514] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 55/100.
+[2024-12-14 14:02:29,531] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 56/100.
+[2024-12-14 14:02:29,550] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 57/100.
+[2024-12-14 14:02:29,567] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 58/100.
+[2024-12-14 14:02:29,586] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 59/100.
+[2024-12-14 14:02:29,602] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 60/100.
+[2024-12-14 14:02:29,621] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 61/100.
+[2024-12-14 14:02:29,641] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 62/100.
+[2024-12-14 14:02:29,658] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 63/100.
+[2024-12-14 14:02:29,675] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 64/100.
+[2024-12-14 14:02:29,693] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 65/100.
+[2024-12-14 14:02:29,713] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 66/100.
+[2024-12-14 14:02:29,729] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 67/100.
+[2024-12-14 14:02:29,746] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 68/100.
+[2024-12-14 14:02:29,763] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 69/100.
+[2024-12-14 14:02:29,780] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 70/100.
+[2024-12-14 14:02:29,797] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 71/100.
+[2024-12-14 14:02:29,815] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 72/100.
+[2024-12-14 14:02:29,834] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 73/100.
+[2024-12-14 14:02:29,851] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 74/100.
+[2024-12-14 14:02:29,865] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 75/100.
+[2024-12-14 14:02:29,880] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 76/100.
+[2024-12-14 14:02:29,892] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 77/100.
+[2024-12-14 14:02:29,905] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 78/100.
+[2024-12-14 14:02:29,916] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 79/100.
+[2024-12-14 14:02:29,927] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 80/100.
+[2024-12-14 14:02:29,939] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 81/100.
+[2024-12-14 14:02:29,951] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 82/100.
+[2024-12-14 14:02:29,963] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 83/100.
+[2024-12-14 14:02:29,978] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 84/100.
+[2024-12-14 14:02:29,992] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 85/100.
+[2024-12-14 14:02:30,006] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 86/100.
+[2024-12-14 14:02:30,018] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 87/100.
+[2024-12-14 14:02:30,029] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 88/100.
+[2024-12-14 14:02:30,040] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 89/100.
+[2024-12-14 14:02:30,055] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 90/100.
+[2024-12-14 14:02:30,068] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 91/100.
+[2024-12-14 14:02:30,082] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 92/100.
+[2024-12-14 14:02:30,093] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 93/100.
+[2024-12-14 14:02:30,104] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 94/100.
+[2024-12-14 14:02:30,121] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 95/100.
+[2024-12-14 14:02:30,137] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 96/100.
+[2024-12-14 14:02:30,149] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 97/100.
+[2024-12-14 14:02:30,163] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 98/100.
+[2024-12-14 14:02:30,180] DEBUG [PPO.Placement_PPO.rollout:456] Rolling out placement 99/100.
+[2024-12-14 14:02:30,205] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 0/5.
+[2024-12-14 14:02:30,205] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:30,218] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:30,219] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:30,220] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:30,254] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 1/5.
+[2024-12-14 14:02:30,255] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:30,279] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:30,281] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:30,282] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:30,311] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 2/5.
+[2024-12-14 14:02:30,312] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:30,337] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:30,339] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:30,340] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:30,368] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 3/5.
+[2024-12-14 14:02:30,368] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:30,392] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:30,394] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:30,395] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:30,415] DEBUG [PPO.Placement_PPO.learn_shane:314] Optimization round 4/5.
+[2024-12-14 14:02:30,415] DEBUG [PPO.Placement_PPO.learn_shane:315] Evaluating batch.
+[2024-12-14 14:02:30,434] DEBUG [PPO.Placement_PPO.evaluate:648] Setting up the distributions.
+[2024-12-14 14:02:30,437] DEBUG [PPO.Placement_PPO.evaluate:654] Getting the actions.
+[2024-12-14 14:02:30,437] DEBUG [PPO.Placement_PPO.evaluate:660] Getting the log_probs.
+[2024-12-14 14:02:30,774] INFO [Environment.utils.do_placement:111] Placement of DiffAmp done with reward -2357.037032260819.
+[2024-12-14 14:02:30,774] DEBUG [Environment.utils.do_placement:112] Circuit of best placement:  type <class 'SchematicCapture.Circuit.Circuit'>, id 140413859553024
+[2024-12-14 14:02:30,780] DEBUG [Environment.utils.do_bottom_up_placement:190] Best-circuit: type <class 'SchematicCapture.Circuit.Circuit'>, id 140413859553024
+[2024-12-14 14:02:30,780] DEBUG [Environment.utils.do_bottom_up_placement:201] Updating cell of device XM5.
+[2024-12-14 14:02:30,780] DEBUG [Environment.utils.do_bottom_up_placement:202] Best-location (-177.5, 576.0), Best-rotation 0.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:205] Updated cell to location (-177.5, 576.0) and rotation 0.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:201] Updating cell of device XDP_XM1_XM2.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:202] Best-location (160.0, 642.0), Best-rotation 270.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:205] Updated cell to location (160.0, 642.0) and rotation 270.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:201] Updating cell of device XDL_XM3_XM4.
+[2024-12-14 14:02:30,781] DEBUG [Environment.utils.do_bottom_up_placement:202] Best-location (447.5, 688.0), Best-rotation 0.
+[2024-12-14 14:02:30,782] DEBUG [Environment.utils.do_bottom_up_placement:205] Updated cell to location (447.5, 688.0) and rotation 0.

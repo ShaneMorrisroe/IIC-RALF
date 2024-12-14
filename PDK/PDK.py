@@ -269,3 +269,4 @@ class PDK:
 
 #setup a global pdk    
 global_pdk = PDK('PDK/layers.json')
+#PDK('PDK/layers.json')   #('/foss/ralf/PDK/layers.json')

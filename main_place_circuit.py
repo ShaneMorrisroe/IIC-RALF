@@ -45,7 +45,7 @@ file.close()
 circuit = die.circuit
 
 #instantiate the circuit-devices in Magic
-instantiate_circuit(circuit, path='Magic/Devices')
+instantiate_circuit(circuit, path='Magic/Devices') #Magic/Devices
 
 #place the circuit
 place_circuit(CIRCUIT_NAME, circuit, debug=False)

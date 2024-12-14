@@ -1,0 +1,24 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1731924838
+<< checkpaint >>
+rect -410 2375 2702 2733
+rect -1261 1997 2702 2375
+rect -1556 1539 2702 1997
+rect -1685 -1261 2702 1539
+rect -1685 -1539 1685 -1261
+rect -1556 -1997 1556 -1539
+use XDL_XM3_XM4  XDL_XM3_XM4_0 ~/IIC-RALF/Magic/Devices
+timestamp 1731924838
+transform 1 0 1146 0 1 736
+box -296 -737 296 737
+use XDP_XM1_XM2  XDP_XM1_XM2_0 ~/IIC-RALF/Magic/Devices
+timestamp 1731924838
+transform 1 0 424 0 1 836
+box -425 -279 425 279
+use XM5  XM5_0 ~/IIC-RALF/Magic/Devices
+timestamp 1731924838
+transform -1 0 396 0 -1 278
+box -396 -279 396 279
+<< end >>

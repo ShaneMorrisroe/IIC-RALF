@@ -19,6 +19,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # ========================================================================
 
+#using Magic to place and route (top bench mark)
 from __future__ import annotations
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:

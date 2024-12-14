@@ -104,7 +104,7 @@ def instantiate_devices(Circuit : Circuit, path = 'Magic/Devices', del_path = Tr
         #save the actual directory
         act_dir = os.getcwd()
         os.chdir(path)
-        os.system('magic -dnull -noconsole -rcfile ${PDKPATH}/libs.tech/magic/sky130A.magicrc "init_devs.tcl" > /dev/null')
+        os.system('magic -dnull -noconsole -rcfile ${PDKPATH}/libs.tech/magic/sky130A.magicrc "init_devs.tcl" > /dev/null') 
         os.chdir(act_dir)
     else:
         raise KeyError(f"[ERROR] Variable PDKPATH not set!")
