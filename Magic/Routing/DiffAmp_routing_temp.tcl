@@ -1,3 +1,4 @@
+load Magic/Placement/DiffAmp.mag
 wire segment m1 30.0 1124 456 1124 456
 wire segment mcon 18.0 1124 456 1124 456
 wire segment m1 30.0 1732 456 1732 456

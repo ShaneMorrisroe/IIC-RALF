@@ -66,8 +66,8 @@ def main():
     C.draw_graph("circuit_graph.png")
         
     #include primitive compositions into the circuit
-    include_primitives_hierarchical(C)
-    include_RStrings_hierarchical(C)
+    #include_primitives_hierarchical(C)
+    #include_RStrings_hierarchical(C)
 
     #instantiate the circuit cells in magic
     if INSTANTIATE_CELLS_IN_MAGIC:

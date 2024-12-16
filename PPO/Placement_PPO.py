@@ -65,8 +65,8 @@ import copy
 import logging
 
 import pandas as pd
-
 from Environment.RUDY import RUDY
+import random
 
 def init_weights(m):
     if type(m)==nn.Linear:
@@ -269,37 +269,24 @@ class Placement_PPO:
         self.env.save_logs_to_csv()
         
     def learn_shane(self, total_placements):
-        """Learn to place."""
+        """Learn to place and evaluate Pareto front at the end of each rollout with entropy regularization."""
         print(f"Learning to place for {total_placements} placements.")
         print(f"Doing {self.placements_per_batch} placements per batch.")
         
         self.file_logger.info(f"Learning to place for {total_placements} placements.")
         self.file_logger.info(f"Doing {self.placements_per_batch} placements per batch.")
 
-        placements_so_far = 0  # Track the done placements
-        self.iterations_so_far = 0  # Track the done iterations
-        cumulative_pareto_data = []  # Cumulative Pareto data across iterations
+        placements_so_far = 0  # Track placements completed
+        self.iterations_so_far = 0  # Track completed rollouts
+        cumulative_pareto_data = []  # Store all placement data (HPWL, Congestion)
 
         while placements_so_far < total_placements:
-            # Check for early stopping
-            if len(self.logger['std_rews']) > 100:
-                mean_std = np.mean(np.array(self.logger['std_rews'][-100:]))
-                if mean_std < self.stopping_std:
-                    break
-
-            start = time.time_ns()
-            # Roll out the environment
+            # Rollout the environment
             self.file_logger.debug(f"Rolling out the environment.")
             batch_obs, batch_acts, batch_log_probs, batch_rts, batch_advantages, batch_placements = self.rollout()
 
-            print(f"Rollout took: {(time.time_ns() - start) / 1e6} ms")
-            
             placements_so_far += batch_placements
             self.iterations_so_far += 1
-
-            # Log iterations and placements so far
-            self.logger["iterations_so_far"] = self.iterations_so_far
-            self.logger["placements_so_far"] = placements_so_far
 
             # Detach tensors for optimization
             A = batch_advantages.detach()
@@ -311,12 +298,35 @@ class Placement_PPO:
 
             # Optimize the networks
             for _ in range(self.n_updates_per_iteration):
-                self.file_logger.debug(f"Optimization round {_}/{self.n_updates_per_iteration}.")
-                self.file_logger.debug(f"Evaluating batch.")
-
                 # Calculate state values and probabilities
-                V, step_log_prob = self.evaluate(batch_obs, batch_acts)
+                batch = next(iter(batch_obs))  # Get a single batch
+                if isinstance(batch, tuple):  # Unpack if batch is a tuple
+                    batch = batch[0]
+
+                V, step_log_prob = self.evaluate_shane(batch, batch_acts)
                 ratios = torch.exp(step_log_prob - batch_log_probs)
+
+                # Entropy calculation for exploration encouragement
+                entropy_x_list, entropy_y_list, entropy_rot_list = [], [], []
+
+                for data in batch_obs:  # Iterate over the DataLoader
+                    actions, _ = self.policy(data)  # Forward pass through the policy
+                    entropy_x = torch.distributions.Categorical(actions[0]).entropy()
+                    entropy_y = torch.distributions.Categorical(actions[1]).entropy()
+                    entropy_rot = torch.distributions.Categorical(actions[2]).entropy()
+
+                    # Collect entropy values for this batch
+                    entropy_x_list.append(entropy_x)
+                    entropy_y_list.append(entropy_y)
+                    entropy_rot_list.append(entropy_rot)
+
+                # Compute the mean entropy across all batches
+                entropy_x = torch.cat(entropy_x_list).mean()
+                entropy_y = torch.cat(entropy_y_list).mean()
+                entropy_rot = torch.cat(entropy_rot_list).mean()
+
+                # Combine the entropies
+                entropy_bonus = (entropy_x + entropy_y + entropy_rot).mean()
 
                 # Calculate surrogate losses
                 surr1 = ratios * A
@@ -324,7 +334,9 @@ class Placement_PPO:
 
                 actor_loss = (-torch.min(surr1, surr2)).mean()
                 critic_loss = nn.MSELoss()(V, batch_rts)
-                policy_loss = actor_loss + 0.5 * critic_loss
+
+                # Include entropy bonus in policy loss
+                policy_loss = actor_loss + 0.5 * critic_loss - self.entropy_coeff * entropy_bonus
 
                 # KL approximation
                 KL_approx = (ratios * torch.log(ratios) - (ratios - 1)).mean()
@@ -340,59 +352,236 @@ class Placement_PPO:
                 policy_losses.append(policy_loss.item())
                 KL_divergences.append(KL_approx.item())
 
-                print(f"KL={KL_approx.item()}")
-
-            print(f"Optimization took: {(time.time_ns() - start) / 1e6} ms")
-
+            # Append KL divergences for the current rollout
             self.logger['actor_losses'].append(actor_losses)
             self.logger['critic_losses'].append(critic_losses)
             self.logger['policy_losses'].append(policy_losses)
             self.logger['KL_divergences'].append(KL_divergences)
 
-            # Add Pareto data (HPWL and Congestion)
-            HPWL = 0
-            rudy_congestion = RUDY(self.env._pdk)
+            # Gather Pareto data for this rollout
+            rollout_data = []
+            HPWL = 0  # Initialize HPWL
+            rudy_congestion = RUDY(self.env._pdk)  # Initialize congestion calculator
+
             for net in self.env.best_placement.nets.values():
                 HPWL += net.HPWL()
                 rudy_congestion.add_net(net)
+
             congestion = rudy_congestion.congestion()
+            new_point = (HPWL, congestion)
 
-            # Add new data to the cumulative Pareto dataset
-            cumulative_pareto_data.append((HPWL, congestion))
+            # Add the new point only if it's unique
+            if new_point not in cumulative_pareto_data:
+                cumulative_pareto_data.append(new_point)
 
-            # Plot the cumulative Pareto curve
-            self._plot_pareto_curve(cumulative_pareto_data, iteration=self.iterations_so_far)
+            print("Rollout Data:", [new_point])
+            print("Cumulative Pareto Data:", cumulative_pareto_data)
+            print(f"Placements so far: {placements_so_far}, Total placements: {total_placements}")
 
-            self._log_summary()
+            # Evaluate and plot Pareto front for this rollout
+            pareto_front = self._calculate_pareto_front(cumulative_pareto_data)
+            self._plot_pareto_curve(cumulative_pareto_data, pareto_front, rollout=self.iterations_so_far)
 
-            if self.plot_log:
-                self.plot_logs(title=self.env.name)
+            # Log summary safely with KL divergence check
+            self._log_summary_shane()
 
-            if self.iterations_so_far % self.save_freq == 0:
-                torch.save(self.actor.state_dict(), 'Network/Weights/ppo_actor.pth')
-                torch.save(self.critic.state_dict(), 'Network/Weights/ppo_critic.pth')
-
+        # Save final logs
         self.save_logs_to_csv()
         self.env.save_logs_to_csv()
 
+    def learn_morl_shane(self, total_placements, weight_samples):
+        """
+        Learn with multi-objective RL (MORL) using Pareto-specific functions.
+
+        Args:
+            total_placements (int): Total number of placements for learning.
+            weight_samples (list of lists): Weight vectors for scalarizing objectives.
+        """
+        print(f"Learning to place for {total_placements} placements with MORL.")
+        print(f"Doing {self.placements_per_batch} placements per batch.")
+
+        self.file_logger.info(f"Learning to place for {total_placements} placements with MORL.")
+        self.file_logger.info(f"Doing {self.placements_per_batch} placements per batch.")
+
+        placements_so_far = 0
+        self.iterations_so_far = 0
+        pareto_data = []  # To store (HPWL, Congestion) and reward tuples
+
+        while placements_so_far < total_placements:
+            # Sample weights for scalarization
+            weight_vector = random.choice(weight_samples)
+            print(f"Using weights: {weight_vector}")
+
+            # Rollout the environment with the current weights
+            batch_obs, batch_acts, batch_log_probs, batch_rts, batch_adv, batch_placements = self.rollout(weight_vector)
+            placements_so_far += batch_placements
+            self.iterations_so_far += 1
+
+            # Detach tensors for optimization
+            A = batch_adv.detach()
+            batch_rts = batch_rts.detach()
+            batch_log_probs = batch_log_probs.detach()
+            batch_acts = batch_acts.detach()
+
+            actor_losses, critic_losses, policy_losses, KL_divergences = [], [], [], []
+
+            # Optimize the policy and value networks
+            for _ in range(self.n_updates_per_iteration):
+                # Evaluate the policy and state values
+                V, step_log_prob = self.evaluate_shane(batch_obs, batch_acts, weight_vector)
+                ratios = torch.exp(step_log_prob - batch_log_probs)
+
+                # Surrogate loss calculations
+                surr1 = ratios * A
+                surr2 = torch.clamp(ratios, 1 - self.clip, 1 + self.clip) * A
+                actor_loss = (-torch.min(surr1, surr2)).mean()
+
+                # Critic loss and entropy regularization
+                critic_loss = nn.MSELoss()(V, batch_rts)
+                entropy_bonus = -self.entropy_coeff * (step_log_prob.mean())
+                policy_loss = actor_loss + 0.5 * critic_loss + entropy_bonus
+
+                # Perform optimization
+                self.policy_optim.zero_grad()
+                policy_loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.policy.parameters(), 5)
+                self.policy_optim.step()
+
+                # Log metrics
+                actor_losses.append(actor_loss.item())
+                critic_losses.append(critic_loss.item())
+                policy_losses.append(policy_loss.item())
+                KL_divergences.append(entropy_bonus.item())
+
+            # Log results for the current rollout
+            self.logger['actor_losses'].append(actor_losses)
+            self.logger['critic_losses'].append(critic_losses)
+            self.logger['policy_losses'].append(policy_losses)
+            self.logger['KL_divergences'].append(KL_divergences)
+
+            # Compute Pareto-specific objectives
+            HPWL, congestion = self._calculate_objectives()
+            reward = self._calculate_scalarized_reward(weight_vector, HPWL, congestion)
+            new_pareto_point = (HPWL, congestion, reward)
+
+            # Pareto-specific updates
+            self._update_pareto_data(pareto_data, new_pareto_point)
+
+            # Plot updated Pareto front
+            pareto_front = self._evaluate_pareto_front(pareto_data)
+            self._plot_pareto_curve(pareto_data, pareto_front, rollout=self.iterations_so_far)
+
+            print(f"Rollout Data: {new_pareto_point}")
+            print(f"Cumulative Pareto Data: {pareto_data}")
+            print(f"Placements so far: {placements_so_far}, Total placements: {total_placements}")
+
+            # Log summary for this rollout
+            self._log_summary_shane()
+
+        # Save final logs
+        self.save_logs_to_csv()
+        self.env.save_logs_to_csv()
+
+    def _update_pareto_data(self, pareto_data, new_point):
+        """
+        Update the Pareto data set with a new point, ensuring no dominated points remain.
+
+        Args:
+            pareto_data (list of tuples): Current Pareto data (HPWL, Congestion, Reward).
+            new_point (tuple): New data point (HPWL, Congestion, Reward).
+        """
+        # Remove dominated points
+        pareto_data[:] = [
+            point for point in pareto_data
+            if not self._dominates(new_point, point)
+        ]
+
+        # Add the new point if it is not dominated
+        if not any(self._dominates(existing, new_point) for existing in pareto_data):
+            pareto_data.append(new_point)
+
+    def _dominates(self, point1, point2):
+        """
+        Check if point1 dominates point2 in a multi-objective sense.
+
+        Args:
+            point1 (tuple): (HPWL, Congestion, Reward)
+            point2 (tuple): (HPWL, Congestion, Reward)
+
+        Returns:
+            bool: True if point1 dominates point2, False otherwise.
+        """
+        return (
+            all(p1 <= p2 for p1, p2 in zip(point1[:2], point2[:2])) and
+            any(p1 < p2 for p1, p2 in zip(point1[:2], point2[:2]))
+        )
+
+    def _evaluate_pareto_front(self, pareto_data):
+        """
+        Evaluate the current Pareto front.
+
+        Args:
+            pareto_data (list of tuples): Pareto data points (HPWL, Congestion, Reward).
+
+        Returns:
+            list of tuples: Pareto front points (HPWL, Congestion).
+        """
+        pareto_front = []
+        for point in pareto_data:
+            if not any(self._dominates(other, point) for other in pareto_data):
+                pareto_front.append(point)
+        return pareto_front
+    
+    def _calculate_objectives(self):
+        """
+        Calculate objectives (HPWL and Congestion) for the current best placement.
+
+        Returns:
+            tuple: (HPWL, Congestion)
+        """
+        HPWL = sum(net.HPWL() for net in self.env.best_placement.nets.values())
+        rudy_congestion = RUDY(self.env._pdk)
+        for net in self.env.best_placement.nets.values():
+            rudy_congestion.add_net(net)
+        congestion = rudy_congestion.congestion()
+        return HPWL, congestion
+    
+    def _calculate_scalarized_reward(self, weight_vector, HPWL, congestion):
+        """
+        Calculate scalarized reward from weighted objectives.
+
+        Args:
+            weight_vector (list): Weights for scalarization.
+            HPWL (float): HPWL value.
+            congestion (float): Congestion value.
+
+        Returns:
+            float: Scalarized reward.
+        """
+        return -(weight_vector[0] * HPWL + weight_vector[1] * congestion)
+    
+    
+
     
     def _calculate_pareto_front(self, data):
-        """Calculate the Pareto front from the given data."""
+        """Calculate Pareto-optimal points from the given data."""
         pareto_front = []
-        for i, (hpwl, cong) in enumerate(data):
+        for point in data:
             dominated = False
-            for j, (other_hpwl, other_cong) in enumerate(data):
-                # Check if the current point is dominated
-                if i != j and other_hpwl <= hpwl and other_cong <= cong and (other_hpwl < hpwl or other_cong < cong):
+            for other in data:
+                # Compare points: "other" dominates "point" if it is better in all objectives
+                if other[0] <= point[0] and other[1] <= point[1] and other != point:
                     dominated = True
                     break
             if not dominated:
-                pareto_front.append((hpwl, cong))
+                pareto_front.append(point)
         return pareto_front
 
 
-    def _plot_pareto_curve(self, cumulative_data, iteration):
-        """Plot the cumulative Pareto curve with all points."""
+
+
+    def _plot_pareto_curve(self, data, pareto_front, rollout):
+        """Plot all points and highlight the Pareto front."""
         import matplotlib.pyplot as plt
         import os
 
@@ -400,29 +589,31 @@ class Placement_PPO:
         save_dir = 'Logs/Pareto_Curves'
         os.makedirs(save_dir, exist_ok=True)
 
-        # Calculate the Pareto front from cumulative data
-        pareto_front = self._calculate_pareto_front(cumulative_data)
+        # Extract all data points and Pareto front points
+        all_hpwl = [point[0] for point in data]
+        all_cong = [point[1] for point in data]
+        pareto_hpwl = [point[0] for point in pareto_front]
+        pareto_cong = [point[1] for point in pareto_front]
 
-        # Extract Pareto front points
-        hpwl_vals = [point[0] for point in pareto_front]
-        cong_vals = [point[1] for point in pareto_front]
-
-        # Plot all points and Pareto front
+        # Plot all points
         plt.figure()
-        plt.scatter(*zip(*cumulative_data), alpha=0.3, label="All Points")
-        plt.plot(hpwl_vals, cong_vals, 'r-o', label="Pareto Front")
+        plt.scatter(all_hpwl, all_cong, alpha=0.3, label="All Points", color="blue")
+        
+        # Highlight Pareto front
+        plt.plot(pareto_hpwl, pareto_cong, 'r-o', label="Pareto Front", linewidth=2)
+
         plt.xlabel("HPWL")
         plt.ylabel("Congestion")
-        plt.title("Pareto Curve (Cumulative)")
+        plt.title(f"Pareto Curve - Rollout {rollout}")
         plt.legend()
         plt.grid(True)
 
         # Save the plot
-        save_path = os.path.join(save_dir, f'Cumulative_Pareto_Curve.png')
+        save_path = os.path.join(save_dir, f"Pareto_Curve_Rollout_{rollout}.png")
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
-        plt.close()  # Close the plot to avoid displaying it
+        plt.close()
+        print(f"Pareto curve for rollout {rollout} saved to {save_path}")
 
-        print(f"Cumulative Pareto curve saved to {save_path}")
 
 
     def rollout(self):
@@ -663,6 +854,62 @@ class Placement_PPO:
         V = V.squeeze()
         return V, log_probs
     
+    def evaluate_shane(self, batch_obs: DataLoader, batch_acts: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """
+        Evaluate the batches for policy-training.
+
+        Args:
+            batch_obs (DataLoader): Batched observations (as a DataLoader or Data object).
+            batch_acts (torch.Tensor): Batched actions (as tensors).
+
+        Returns:
+            tuple[torch.Tensor, torch.Tensor]: 
+                - Estimated values of the actions (V).
+                - Log probabilities of the actions.
+        """
+        # Extract a single batch from DataLoader
+        batch = next(iter(batch_obs)) if isinstance(batch_obs, DataLoader) else batch_obs
+
+        # Check if batch is a tuple (e.g., (data, labels)) and unpack
+        if isinstance(batch, tuple):
+            batch = batch[0]
+
+        # Ensure the batch is a Data object
+        if not hasattr(batch, 'x'):
+            raise TypeError(f"Expected batch to be a Data object, but got {type(batch)}. Ensure batch_obs is correctly passed.")
+
+        # Forward pass through the policy
+        actions, V = self.policy(batch)
+
+        # Extract action distributions
+        action_x, action_y, action_rot = actions[0], actions[1], actions[2]
+
+        # Setup CDFs for the actions
+        self.file_logger.debug("Setting up the distributions.")
+        distr_x = torch.distributions.Categorical(action_x)
+        distr_y = torch.distributions.Categorical(action_y)
+        distr_rot = torch.distributions.Categorical(action_rot)
+
+        # Get the performed actions
+        self.file_logger.debug("Getting the actions.")
+        action_x = batch_acts[:, 0]
+        action_y = batch_acts[:, 1]
+        action_rot = batch_acts[:, 2]
+
+        # Compute the log probabilities of the actions under the current policy
+        self.file_logger.debug("Getting the log_probs.")
+        log_probs = (
+            distr_x.log_prob(action_x)
+            + distr_y.log_prob(action_y)
+            + distr_rot.log_prob(action_rot)
+        )
+
+        # Squeeze the state values for output
+        V = V.squeeze()
+        return V, log_probs
+
+
+
 
     def _init_hyperparameters(self, hyperparameters : dict):
         """Initialize the hyperparameters of the algorithm.
@@ -676,11 +923,11 @@ class Placement_PPO:
         #Hyperparameters for the algorithm
         self.placements_per_batch = 1000    #number of placements per batch
         self.n_updates_per_iteration = 5    #number of updates taken per iteration
-        self.lr = 0.005                     #learning rate for network optimization
+        self.lr = 1e-4                     #learning rate for network optimization 
         self.gamma = 0.95                   #discount factor for return shaping
         self.clip = 0.2                     #clip hyperparameter for PPO
-        self.stopping_std = 500             #max reward std. after which the algorithm will stop early 
-        self.trace_decay = 0.99             #trace decay for general advantage estimation                  
+        self.stopping_std = 50             #max reward std. after which the algorithm will stop early 
+        self.trace_decay = 0.95             #trace decay for general advantage estimation                  
 
         #Control parameters
         self.render = False                 #render the environment
@@ -689,6 +936,8 @@ class Placement_PPO:
         self.plot_grad_flow = False         #plot the gradient-flow of the networks
         self.plot_log = False               #plot the logging information
         self.save_to_csv = True             #save data to a CSV file
+        #add entropy?
+        self.entropy_coeff = 0.00  # NEW: Coefficient for entropy bonus
 
         #Change default hyperparameters if specified
         for k,v in hyperparameters.items():
@@ -750,6 +999,54 @@ class Placement_PPO:
         self.logger['critic_losses'] = []
         self.logger['policy_lisse'] = []
         self.logger['KL_divergences'] = []
+
+    def _log_summary_shane(self):
+        """Print a summary of the logged data."""
+        delta_t = self.logger['delta_t']
+        self.logger['delta_t'] = time.time_ns()
+        delta_t = (self.logger['delta_t'] - delta_t) / 1e9
+
+        placements_so_far = self.logger["placements_so_far"]
+        iterations_so_far = self.logger["iterations_so_far"]
+
+        avg_episode_rews = np.mean([np.sum(rews) for rews in self.logger["batch_rews"]])
+        std_episode_rews = np.std([np.sum(rews) for rews in self.logger["batch_rews"]])
+        
+        avg_actor_loss = np.mean(self.logger['actor_losses'][-1])
+        avg_critic_loss = np.mean(self.logger['critic_losses'][-1])
+        avg_policy_loss = np.mean(self.logger['policy_losses'][-1])
+
+        # Safeguard for empty KL divergences
+        if not self.logger['KL_divergences']:
+            avg_KL_divergences = 0
+        else:
+            avg_KL_divergences = np.mean(self.logger['KL_divergences'][-1])
+
+        self.logger['avg_rews'].append(round(avg_episode_rews, 2))
+        self.logger['std_rews'].append(round(std_episode_rews, 2))
+        self.logger['avg_actor_loss'].append(round(avg_actor_loss, 5))
+        self.logger['avg_critic_loss'].append(round(avg_critic_loss, 5))
+        self.logger['avg_policy_loss'].append(round(avg_policy_loss, 5))
+        self.logger['avg_KL_divergences'].append(round(avg_KL_divergences, 5))
+
+        print(flush=True)
+        print(f"-------------------- Iteration #{iterations_so_far} --------------------", flush=True)
+        print(f"Average Episodic Return: {avg_episode_rews}", flush=True)
+        print(f"Average Actor Loss: {avg_actor_loss}", flush=True)
+        print(f"Average Critic Loss: {avg_critic_loss}", flush=True)
+        print(f"Average Policy Loss: {avg_policy_loss}", flush=True)
+        print(f"Average KL Divergence: {avg_KL_divergences}", flush=True)
+        print(f"Placements So Far: {placements_so_far}", flush=True)
+        print(f"Iteration took: {delta_t} secs", flush=True)
+        print(f"------------------------------------------------------", flush=True)
+
+        # Reset batch-specific logging data
+        self.logger['batch_rews'] = []
+        self.logger['actor_losses'] = []
+        self.logger['critic_losses'] = []
+        self.logger['policy_losses'] = []
+        self.logger['KL_divergences'] = []
+
 
     def save_logs_to_csv(self):
         """

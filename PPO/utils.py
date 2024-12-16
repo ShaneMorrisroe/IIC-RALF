@@ -39,6 +39,8 @@ from PPO.Placement_PPO import Placement_PPO
 from Network.D2RL_Actor import D2RL_Actor
 
 
+
+
 def train(env : Placement, hyperparameters : dict, actor_model : str = '', critic_model : str = '', total_placements=200e6):
     """Train a policy network to learn placing cells.
 
@@ -65,4 +67,10 @@ def train(env : Placement, hyperparameters : dict, actor_model : str = '', criti
         print(f"Training from scratch.", flush=True)
 
     #learn to place
-    model.learn_shane(total_placements=total_placements)
+    weight_samples = [
+    [0.5, 0.5],  # Equal weight for HPWL and Congestion
+    [0.7, 0.3],  # Higher weight on HPWL
+    [0.3, 0.7],  # Higher weight on Congestion
+    ]
+
+    model.learn_shane(total_placements=total_placements)#, weight_samples=weight_samples) #learn/learn_shane/learn_morl_shane
